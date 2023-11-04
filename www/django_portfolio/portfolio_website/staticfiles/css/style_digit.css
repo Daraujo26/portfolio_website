@@ -1,0 +1,54 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.description {
+    border-bottom: 1px solid #aaa;
+    padding: 1em;
+    margin-bottom: 20px;
+    z-index: 1000;
+    position: relative;
+    display: block;
+    visibility: visible;
+    width: 60%; 
+    text-align: center;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: start; 
+    padding-top: 5vh; 
+    gap: 2rem;
+}
+
+.output-area h3, .description {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.drawing-area, .output-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Styling for the output */
+.output-area {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 2px 2px 12px #aaa;
+}
+
+/* Additional styling for canvas */
+#drawCanvas {
+    box-shadow: 2px 2px 12px #aaa;
+}
