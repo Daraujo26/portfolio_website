@@ -1,0 +1,36 @@
+# Mac OS system files
+.DS_Store
+
+# Python compiled files
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+env/
+bin/
+lib/
+include/
+
+# PyCharm IDE files
+.idea/
+
+# Log files
+*.log
+
+# SQLite database files
+*.sqlite3
+*.sqlite3-journal
+
+# Media files
+media/
+
+# Static files
+static/
+assets/
+
+# Temporary files
+*.bak
+*.tmp
+
+
