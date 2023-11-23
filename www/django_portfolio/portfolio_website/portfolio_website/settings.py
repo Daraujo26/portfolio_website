@@ -140,7 +140,7 @@ LOGGING = {
         'file': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
-            'filename': '/var/www/django_portfolio/portfolio_website/error.log',
+            'filename': '/var/portfolio_website/www/django_portfolio/portfolio_website/error.log',
         },
     },
     'loggers': {
