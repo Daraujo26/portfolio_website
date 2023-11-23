@@ -33,4 +33,5 @@ assets/
 *.bak
 *.tmp
 
-
+# .env 
+.env
