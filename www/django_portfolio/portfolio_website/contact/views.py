@@ -3,11 +3,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from .models import Contact
 from django.core.mail import send_mail
+import json
 
 @csrf_exempt 
 @require_POST
 def submit_contact_form(request):
-    data = request.POST
+    data = json.loads(request.body)
 
     # Save submission to the database
     contact = Contact.objects.create(
