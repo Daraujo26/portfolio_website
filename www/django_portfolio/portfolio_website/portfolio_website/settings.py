@@ -162,5 +162,5 @@ LOGGING = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://davidaraujo.me/",
+    "https://davidaraujo.me",
 ]
