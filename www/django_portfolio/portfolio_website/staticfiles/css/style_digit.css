@@ -14,78 +14,55 @@ html {
 }
 
 .description {
-    border-bottom: 1px solid #aaa;
     padding: 1em;
     margin-bottom: 20px;
-    z-index: 1000;
-    position: relative;
-    display: block;
-    visibility: visible;
-    width: 60%;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    width: 80%;
+    max-width: 500px;
 }
 
 .app-container {
     display: flex;
-    justify-content: center;
-    align-items: start;
-    padding-top: 5vh;
-    gap: 2rem;
-}
-
-.output-area h3,
-.description {
-    font-size: 20px;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 .drawing-area,
 .output-area {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-}
-
-.output-area {
-    border: 1px solid #ccc;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 2px 2px 12px #aaa;
 }
 
 #drawCanvas {
+    width: 100vw;
+    height: auto;
+    max-width: 100%;
     box-shadow: 2px 2px 12px #aaa;
 }
 
+#predict-button,
+#reset-button {
+    font-size: 1em;
+    padding: 10px 20px;
+    margin-top: 5px;
+}
+
 @media (max-width: 768px) {
-    .main-container {
+    .description {
+        margin-top: 10px;
         width: 95%;
-        max-width: 600px;
     }
 
     #drawCanvas {
-        width: 95vw;
-        height: 60vh;
+        height: 50vh;
     }
 
     #predict-button,
     #reset-button {
-        font-size: 1.8em;
-        padding: 18px 36px;
-        margin-top: 12px;
-    }
-
-    .app-container {
-        padding-top: 2vh;
-        align-items: center;
-    }
-
-    .drawing-area,
-    .output-area {
-        width: 100%;
-        align-items: center;
+        font-size: 1.2em;
+        padding: 12px 24px;
     }
 }
