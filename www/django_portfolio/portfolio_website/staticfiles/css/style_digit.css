@@ -48,7 +48,6 @@ html {
     gap: 1rem;
 }
 
-/* Styling for the output */
 .output-area {
     border: 1px solid #ccc;
     padding: 1rem;
@@ -56,7 +55,21 @@ html {
     box-shadow: 2px 2px 12px #aaa;
 }
 
-/* Additional styling for canvas */
 #drawCanvas {
     box-shadow: 2px 2px 12px #aaa;
+}
+
+@media (max-width: 768px) {
+
+    #drawCanvas {
+        width: 100vw;
+        height: 50vh;
+    }
+
+    #predict-button,
+    #reset-button {
+        font-size: 1.5em;
+        padding: 15px 30px;
+        margin-top: 10px;
+    }
 }
