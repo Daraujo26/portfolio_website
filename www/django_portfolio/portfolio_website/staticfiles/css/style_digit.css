@@ -1,7 +1,7 @@
 body,
 html {
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
 .main-container {
@@ -9,7 +9,8 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .description {
@@ -60,9 +61,19 @@ html {
 }
 
 @media (max-width: 768px) {
+    .main-container {
+        width: 90%;
+        max-width: 600px;
+    }
+
+    .description,
+    .output-area,
+    .drawing-area {
+        width: 100%;
+    }
 
     #drawCanvas {
-        width: 100vw;
+        width: 90vw;
         height: 50vh;
     }
 
@@ -71,5 +82,16 @@ html {
         font-size: 1.5em;
         padding: 15px 30px;
         margin-top: 10px;
+    }
+
+    .app-container {
+        flex-direction: column;
+        padding-top: 2vh;
+        align-items: center;
+    }
+
+    .drawing-area,
+    .output-area {
+        align-items: center;
     }
 }
