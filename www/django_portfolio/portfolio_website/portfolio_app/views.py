@@ -9,12 +9,13 @@ import io
 import torch
 from .torch_models import get_model
 from torchvision import transforms
+import os
 
 device = torch.device('cpu')
 model_instance = get_model(device)
 
 
-model_path = '/var/portfolio_website/www/django_portfolio/portfolio_website/proj_model.pt'
+model_path = os.path.expanduser('~/Desktop/portfolio_website/model/proj_model.pt')
 state_dict = torch.load(model_path, map_location=torch.device('cpu'))
 
 model_instance.load_state_dict(state_dict)

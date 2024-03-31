@@ -3,7 +3,7 @@
 
 <div class="main-container">
   <div class="description">
-    <p>Sketch any digit (0-9) using your cursor and witness it being classified in real-time by a machine learning model trained on the renowned MNIST dataset. This model employs an MLP (Multilayer Perceptron) architecture, leveraging training data which was trained locally on my laptop for precision.</p>
+    <p>Sketch any digit (0-9) using your cursor or touch and witness it being classified in real-time by a machine learning model trained on the renowned MNIST dataset. This model employs an MLP (Multilayer Perceptron) architecture, leveraging training data which was trained locally on my laptop for precision.</p>
   </div>
 
   <div class="app-container">
@@ -13,7 +13,6 @@
       <button onclick="predictNumber()">Predict</button>
       <button onclick="resetCanvas()">Reset</button>
     </div>
-    
     
     <!-- Output Area -->
     <div class="output-area">
@@ -34,54 +33,83 @@
   ctx.lineCap = 'round';
 
   let drawing = false;
-
   const scaleFactor = canvas.width / canvas.offsetWidth;
 
-  canvas.addEventListener('mousedown', (event) => {
+  function getAdjustedCoordinates(event) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      offsetX: (event.clientX - rect.left) * scaleFactor,
+      offsetY: (event.clientY - rect.top) * scaleFactor
+    };
+  }
+
+  function startDrawing(event) {
     drawing = true;
     ctx.beginPath();
-    const adjustedX = event.offsetX * scaleFactor;
-    const adjustedY = event.offsetY * scaleFactor;
-    ctx.moveTo(adjustedX, adjustedY);
-  });
+    const { offsetX, offsetY } = getAdjustedCoordinates(event);
+    ctx.moveTo(offsetX, offsetY);
+  }
 
-  canvas.addEventListener('mouseup', () => {
-      drawing = false;
-      ctx.closePath();
-  });
-  canvas.addEventListener('mouseout', () => {
-      drawing = false;
-  });
-  canvas.addEventListener('mousemove', draw);
+  function startDrawingTouch(event) {
+    event.preventDefault(); // Prevent scrolling
+    drawing = true;
+    ctx.beginPath();
+    const touch = event.touches[0];
+    const { offsetX, offsetY } = getAdjustedCoordinates(touch);
+    ctx.moveTo(offsetX, offsetY);
+  }
 
   function draw(event) {
-      if (!drawing) return;
-      const adjustedX = event.offsetX * scaleFactor;
-      const adjustedY = event.offsetY * scaleFactor;
-      ctx.lineTo(adjustedX, adjustedY);
-      ctx.stroke();
+    if (!drawing) return;
+    const { offsetX, offsetY } = getAdjustedCoordinates(event);
+    ctx.lineTo(offsetX, offsetY);
+    ctx.stroke();
   }
+
+  function drawTouch(event) {
+    event.preventDefault(); // Prevent scrolling
+    if (!drawing) return;
+    const touch = event.touches[0];
+    const { offsetX, offsetY } = getAdjustedCoordinates(touch);
+    ctx.lineTo(offsetX, offsetY);
+    ctx.stroke();
+  }
+
+  function endDrawing() {
+    drawing = false;
+    ctx.closePath();
+  }
+
+  canvas.addEventListener('mousedown', startDrawing);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', endDrawing);
+  canvas.addEventListener('mouseout', endDrawing);
+
+  canvas.addEventListener('touchstart', startDrawingTouch, false);
+  canvas.addEventListener('touchmove', drawTouch, false);
+  canvas.addEventListener('touchend', endDrawing, false);
+  canvas.addEventListener('touchcancel', endDrawing, false);
+
+    // scans the canvas for the furthest non-transparent pixels in each direction
+    function getBoundingBox(ctx, canvas) {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      let left = canvas.width, right = 0, top = canvas.height, bottom = 0;
   
-  // scans the canvas for the furthest non-transparent pixels in each direction
-  function getBoundingBox(ctx, canvas) {
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imageData.data;
-    let left = canvas.width, right = 0, top = canvas.height, bottom = 0;
-
-    for (let y = 0; y < canvas.height; y++) {
-        for (let x = 0; x < canvas.width; x++) {
-            const index = (y * canvas.width + x) * 4;
-            if (data[index+3] > 0) {  // if pixel is not fully transparent
-                if (x < left) left = x;
-                if (x > right) right = x;
-                if (y < top) top = y;
-                if (y > bottom) bottom = y;
-            }
-        }
-    }
-
-    return { left, right, top, bottom };
-}
+      for (let y = 0; y < canvas.height; y++) {
+          for (let x = 0; x < canvas.width; x++) {
+              const index = (y * canvas.width + x) * 4;
+              if (data[index+3] > 0) {  // if pixel is not fully transparent
+                  if (x < left) left = x;
+                  if (x > right) right = x;
+                  if (y < top) top = y;
+                  if (y > bottom) bottom = y;
+              }
+          }
+      }
+  
+      return { left, right, top, bottom };
+  }
 
   function predictNumber() {
     const bbox = getBoundingBox(ctx, canvas);
@@ -132,8 +160,8 @@
     });
 }
 
-  function resetCanvas() {
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      document.getElementById("predictedValue").textContent = "N/A";
-  }  
+function resetCanvas() {
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  document.getElementById("predictedValue").textContent = "N/A";
+}  
 </script>

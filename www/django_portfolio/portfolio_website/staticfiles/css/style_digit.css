@@ -1,3 +1,9 @@
+body,
+html {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 .main-container {
     display: flex;
     flex-direction: column;
@@ -14,26 +20,28 @@
     position: relative;
     display: block;
     visibility: visible;
-    width: 60%; 
+    width: 60%;
     text-align: center;
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: auto;
 }
 
 .app-container {
     display: flex;
     justify-content: center;
-    align-items: start; 
-    padding-top: 5vh; 
+    align-items: start;
+    padding-top: 5vh;
     gap: 2rem;
 }
 
-.output-area h3, .description {
+.output-area h3,
+.description {
     font-size: 20px;
     margin-bottom: 20px;
 }
 
-.drawing-area, .output-area {
+.drawing-area,
+.output-area {
     display: flex;
     flex-direction: column;
     align-items: center;
