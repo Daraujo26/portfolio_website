@@ -62,36 +62,30 @@ html {
 
 @media (max-width: 768px) {
     .main-container {
-        width: 90%;
+        width: 95%;
         max-width: 600px;
     }
 
-    .description,
-    .output-area,
-    .drawing-area {
-        width: 100%;
-    }
-
     #drawCanvas {
-        width: 90vw;
-        height: 50vh;
+        width: 95vw;
+        height: 60vh;
     }
 
     #predict-button,
     #reset-button {
-        font-size: 1.5em;
-        padding: 15px 30px;
-        margin-top: 10px;
+        font-size: 1.8em;
+        padding: 18px 36px;
+        margin-top: 12px;
     }
 
     .app-container {
-        flex-direction: column;
         padding-top: 2vh;
         align-items: center;
     }
 
     .drawing-area,
     .output-area {
+        width: 100%;
         align-items: center;
     }
 }
