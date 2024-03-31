@@ -1,6 +1,9 @@
 {% load static %}
-<link rel="stylesheet" href="{% static '/css/style_digit.css' %}">
-
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static '/css/style_digit.css' %}">
+</head>
+<body>
 <div class="main-container">
   <div class="description">
     <p>Sketch any digit (0-9) using your cursor or touch and witness it being classified in real-time by a machine learning model trained on the renowned MNIST dataset. This model employs an MLP (Multilayer Perceptron) architecture, leveraging training data which was trained locally on my laptop for precision.</p>
@@ -165,3 +168,4 @@ function resetCanvas() {
   document.getElementById("predictedValue").textContent = "N/A";
 }  
 </script>
+</body>
