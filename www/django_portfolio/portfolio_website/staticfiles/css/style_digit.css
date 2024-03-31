@@ -26,20 +26,19 @@ html {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    width: 100%;
 }
 
 .drawing-area,
 .output-area {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
 }
 
 #drawCanvas {
-    width: 100vw;
-    height: auto;
-    max-width: 100%;
+    margin: auto;
     box-shadow: 2px 2px 12px #aaa;
 }
 
@@ -54,10 +53,6 @@ html {
     .description {
         margin-top: 10px;
         width: 95%;
-    }
-
-    #drawCanvas {
-        height: 50vh;
     }
 
     #predict-button,
