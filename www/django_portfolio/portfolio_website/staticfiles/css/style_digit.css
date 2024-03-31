@@ -1,7 +1,7 @@
 body,
 html {
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 .main-container {
@@ -9,24 +9,35 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
+    height: 100vh;
 }
 
 .description {
+    border-bottom: 1px solid #aaa;
     padding: 1em;
     margin-bottom: 20px;
+    z-index: 1000;
+    position: relative;
+    display: block;
+    visibility: visible;
+    width: 60%;
     text-align: center;
-    width: 80%;
-    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .app-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
+    justify-content: center;
+    align-items: start;
+    padding-top: 5vh;
+    gap: 2rem;
+}
+
+.output-area h3,
+.description {
+    font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .drawing-area,
@@ -37,27 +48,57 @@ html {
     gap: 1rem;
 }
 
-#drawCanvas {
-    margin: auto;
+.output-area {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 5px;
     box-shadow: 2px 2px 12px #aaa;
 }
 
-#predict-button,
-#reset-button {
-    font-size: 1em;
-    padding: 10px 20px;
-    margin-top: 5px;
+#drawCanvas {
+    box-shadow: 2px 2px 12px #aaa;
 }
 
 @media (max-width: 768px) {
+
+    body,
+    html {
+        overflow-y: auto;
+    }
+
+    .main-container {
+        padding: 20px;
+        height: auto;
+    }
+
     .description {
-        margin-top: 10px;
         width: 95%;
+        margin-top: 10px;
+        border-bottom: none;
+    }
+
+    .app-container {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+    }
+
+    #drawCanvas {
+        width: 95vw;
+        height: auto;
+        margin: 20px 0;
     }
 
     #predict-button,
     #reset-button {
-        font-size: 1.2em;
-        padding: 12px 24px;
+        font-size: 1.5em;
+        padding: 15px 30px;
+        margin: 10px 0;
+    }
+
+    .drawing-area,
+    .output-area {
+        width: 100%;
+        align-items: center;
     }
 }
